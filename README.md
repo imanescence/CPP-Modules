@@ -1,2 +1,2 @@
-# CPP-Modules
-## In order to learn oriented object with C++ language
+# C++ Modules
+## 9 modules in order to learn oriented object
