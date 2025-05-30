@@ -1,0 +1,92 @@
+Fixed-Point Representation in Computing
+
+Fixed-point representation is a mathematical and computing concept that allows real numbers (with a fractional part) to be represented using integers. Unlike floating-point representation (such as float or double in C++), where numbers are represented with an exponent and a mantissa, fixed-point representation does not have an exponential component and is therefore simpler and faster to handle in some cases.
+1. Principle of Fixed Point
+
+The concept of fixed-point representation is based on the following idea:
+
+    A real number is represented by an integer multiplied by a power of 2. The fractional part is encoded in the bits of the integer.
+
+This eliminates the costly calculations associated with floating-point arithmetic while maintaining decimal precision in calculations. The precision depends on the number of bits used for the fractional part.
+2. How Does It Work?
+
+Let’s consider a simple example to illustrate this.
+
+Suppose we want to represent numbers with 8 bits of precision for the fractional part. This means that each number will be multiplied by 28=25628=256, which allows us to store 8 digits after the decimal point in an integer.
+
+Example Representation:
+
+Imagine we have a floating-point number like 3.14. If we use 8-bit precision (which means multiplying by 256), we get:
+3.14×256=803.84
+3.14×256=803.84
+
+We round this to the nearest integer, which gives 804. This becomes the fixed-point representation of 3.14.
+
+    Original value: 3.14
+    Fixed-point representation: 804 (stored as an integer)
+
+3. Fixed-Point Representation Structure
+
+The number in fixed-point format is stored in an integer, but with a shift to simulate the fractional part. This is done with a scaling factor (which is 2n2n, where n is the number of bits used for the fractional part).
+
+General Structure:
+
+A fixed-point number is of the form:
+Fixed-point value=Integer part+Fractional part2n
+Fixed-point value=Integer part+2nFractional part​
+
+Where:
+
+    Integer part: The whole number part of the value.
+    Fractional part: The digits after the decimal point.
+    2n2n: The scaling factor that determines the precision of the number based on the number of bits used for the fractional part.
+
+4. Why Use Fixed-Point?
+
+Systems with limited resources (like microcontrollers, embedded systems, or real-time applications) can benefit from fixed-point representation for several reasons:
+
+    Performance: Fixed-point calculations are typically faster than floating-point calculations because multiplication, division, and addition operations are simple with integers. Processors that do not natively support floating-point operations (such as some microcontrollers) can perform fixed-point calculations without performance penalties.
+
+    Memory Consumption: Fixed-point representation requires less memory than floating-point numbers because integers typically occupy less memory than floating-point numbers (which often use 32 bits or more).
+
+    Controllable Precision: The precision (the number of digits after the decimal point) is controllable simply by adjusting the number of bits used for the fractional part. This can be useful in applications where high precision is not required, and small errors in representation do not have a significant impact.
+
+    Simplicity of Calculations: Fixed-point numbers are integers, so their manipulation is much simpler and faster than floating-point numbers, which require complex calculations with the exponent and mantissa.
+
+5. Examples of Fixed-Point Usage
+
+Fixed-point representation is commonly used in areas where resources are limited, such as:
+
+    Embedded applications: Microcontrollers, integrated systems, chip-based applications.
+    Digital audio: Real-time sound processing where fast mathematical operations are needed.
+    Graphics and video games: Fast calculations on platforms with limited resources.
+    Motor control and robotics: In position and speed control systems, where rapid calculations are essential.
+
+6. Advantages and Disadvantages of Fixed-Point
+
+Advantages:
+
+    Faster calculations (no need for floating-point handling).
+    Simple to implement (no complexity due to exponent and mantissa).
+    Reduced memory consumption compared to floating-point numbers.
+
+Disadvantages:
+
+    Less precision than floating-point for very large or very small numbers.
+    Saturation and overflow: It's easy to get incorrect results if the values are too large or too small to be represented with the chosen number of bits.
+    Not suitable for applications that require very high precision with widely varying values.
+
+7. Representation of Floating-Point and Fixed-Point Numbers
+
+Here's a comparison table summarizing the differences between the two:
+Characteristic	Fixed Point	Floating Point
+Representation	Integer with a scaling factor	Mantissa + Exponent
+Precision	Depends on the number of bits for the fractional part	Depends on the number of bits for the mantissa and exponent
+Calculation speed	Faster	Slower (requires exponentiation)
+Memory	Less memory	More memory (32 or 64 bits)
+Value range	Limited (depends on bits)	Very wide (can represent very large and small numbers)
+8. Conclusion
+
+Fixed-point representation is an efficient and fast method for storing and manipulating real numbers in systems with limited resources, such as microcontrollers or embedded systems. It allows for precise control over memory and execution speed, at the cost of reduced flexibility compared to floating-point numbers.
+
+In your Fixed class, you use this approach to store values with a certain decimal precision, utilizing integers and simple operations (multiplication and bit shifts). This avoids the overhead associated with using floating-point numbers while still maintaining a reasonable level of precision.
